@@ -1,15 +1,31 @@
 package study.stepup;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class Student {
+
+    private int id;
     private String name;
     private List marks = new ArrayList<>();
 
     public Student(String name) {
         this.name = name;
+    }
+
+    public Student(String name, List marks) {
+        this.name = name;
+        this.marks= marks;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setName(String name) {
@@ -23,6 +39,10 @@ public class Student {
     public List getMarks() {
         //return marks;
         return new ArrayList<>(marks);
+    }
+
+    public void setMarks(List marks) {
+        this.marks = marks;
     }
 
     public void addMark(int mark) {
