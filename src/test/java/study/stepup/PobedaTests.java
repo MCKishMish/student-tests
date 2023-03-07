@@ -30,13 +30,21 @@ public class PobedaTests {
     }
 
     @Test
-    public void pobeda1Test() throws InterruptedException {
+    public void pobeda1Test() {
         PobedaHomePage pobedaHomePage = new PobedaHomePage(driver);
         pobedaHomePage.checkTitle("Авиакомпания «Победа» - купить билеты на самолёт дешево онлайн, прямые и трансферные рейсы");
         pobedaHomePage.checkLogo();
         pobedaHomePage.checkInfoSections();
     }
 
+    @Test
+    public void pobeda2Test() throws InterruptedException {
+        PobedaHomePage pobedaHomePage = new PobedaHomePage(driver);
+        pobedaHomePage.checkTitle("Авиакомпания «Победа» - купить билеты на самолёт дешево онлайн, прямые и трансферные рейсы");
+        pobedaHomePage.checkLogo();
+        pobedaHomePage.checkTicketSearchSection();
+        pobedaHomePage.tryFindingTicketsWithoutReqParams();
+    }
 
 
     @After
