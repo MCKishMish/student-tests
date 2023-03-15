@@ -5,16 +5,17 @@ import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import study.stepup.pages.PobedaHomePageSelenide;
 
 @Epic("Pobeda")
 public class PobedaTestsSelenide {
 
 
-    @Before
+    @BeforeEach
     public void setup() {
         Configuration.browserSize="1920x1080";
     }
@@ -59,7 +60,7 @@ public class PobedaTestsSelenide {
     }
 
 
-    @After
+    @AfterEach
     public void tearDown() {
         Selenide.closeWebDriver();
     }
