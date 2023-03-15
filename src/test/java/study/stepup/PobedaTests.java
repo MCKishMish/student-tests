@@ -1,8 +1,9 @@
 package study.stepup;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import study.stepup.pages.PobedaHomePage;
@@ -13,7 +14,7 @@ public class PobedaTests {
 
     private WebDriver driver;
 
-    @Before
+    @BeforeEach
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "/Users/shalatonov/Downloads/chromedriver_mac64/chromedriver");
         driver = new ChromeDriver();
@@ -48,7 +49,7 @@ public class PobedaTests {
     }
 
 
-    @After
+    @AfterEach
     public void tearDown() {
         driver.quit();
     }

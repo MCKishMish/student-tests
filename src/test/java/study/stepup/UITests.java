@@ -1,9 +1,9 @@
 package study.stepup;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import junit.framework.Assert;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +26,7 @@ public class UITests {
                 (90, TimeUnit.SECONDS).until(we::isDisplayed);
     }
 
-    @Before
+    @BeforeEach
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "/Users/shalatonov/Downloads/chromedriver_mac64/chromedriver");
         wd = new ChromeDriver();
@@ -87,7 +87,7 @@ public class UITests {
         webDriverWait.until(ExpectedConditions.textToBePresentInElement(wd.findElement(manageMyBooking),"Manage my booking"));
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         wd.quit();
     }
