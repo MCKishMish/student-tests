@@ -2,11 +2,15 @@ package study.stepup;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import study.stepup.pages.PobedaHomePageSelenide;
 
+@Epic("Pobeda")
 public class PobedaTestsSelenide {
 
 
@@ -16,6 +20,8 @@ public class PobedaTestsSelenide {
     }
 
     @Test
+    @Feature("Отображение информации")
+    @Description ("Отображение лого и информационных секций")
     public void pobeda1Test() {
         PobedaHomePageSelenide pobedaHomePageSelenide = new PobedaHomePageSelenide();
         pobedaHomePageSelenide.checkTitle("Авиакомпания «Победа» - купить билеты на самолёт дешево онлайн, прямые и трансферные рейсы");
@@ -24,6 +30,8 @@ public class PobedaTestsSelenide {
     }
 
     @Test
+    @Feature("Поиск билетов")
+    @Description ("Попытка поиска билета без обязательных параметров")
     public void pobeda2Test() {
         PobedaHomePageSelenide pobedaHomePageSelenide = new PobedaHomePageSelenide();
         pobedaHomePageSelenide.checkTitle("Авиакомпания «Победа» - купить билеты на самолёт дешево онлайн, прямые и трансферные рейсы");
@@ -33,11 +41,21 @@ public class PobedaTestsSelenide {
     }
 
     @Test
-    public void pobeda3Test() throws InterruptedException {
+    @Feature("Поиск бронирования")
+    @Description ("Поиск несуществующего бронирования")
+    public void pobeda3Test() {
         PobedaHomePageSelenide pobedaHomePageSelenide = new PobedaHomePageSelenide();
         pobedaHomePageSelenide.checkTitle("Авиакомпания «Победа» - купить билеты на самолёт дешево онлайн, прямые и трансферные рейсы");
         pobedaHomePageSelenide.checkLogo();
         pobedaHomePageSelenide.bookingSearch();
+    }
+
+    @Test
+    @Feature("Отображение информации")
+    @Description ("Описания для проваленного теста")
+    public void pobeda4TestError() {
+        PobedaHomePageSelenide pobedaHomePageSelenide = new PobedaHomePageSelenide();
+        pobedaHomePageSelenide.checkTitle("Авиакомпания «Победа» - купить билеты на самолёт дешево онлайн, прямые и трансферные рейсы1");
     }
 
 

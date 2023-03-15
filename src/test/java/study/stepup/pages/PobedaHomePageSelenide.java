@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.impl.windows.WindowByNameOrHandle;
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -21,7 +22,6 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.awaitility.Awaitility.with;
 
 public class PobedaHomePageSelenide {
-
 
 
     private SelenideElement pobedaLogo = $x("//div[@class='dp-2ri4z4']/a/img");
@@ -55,7 +55,6 @@ public class PobedaHomePageSelenide {
     private SelenideElement bookingSearchErrorMessage = $x("//div[text()='Заказ с указанными параметрами не найден']");
 
 
-
     public PobedaHomePageSelenide() {
         open("https://pobeda.aero/");
     }
@@ -65,14 +64,16 @@ public class PobedaHomePageSelenide {
                 (90, TimeUnit.SECONDS).until(we::isDisplayed);
     }
 
+    @Step("Проверка, что заголовок сайта - {title}")
     public void checkTitle(String title) {
         Assert.assertEquals(title, title());
     }
-
+    @Step("Проверка присутстия лого")
     public void checkLogo() {
         Assert.assertTrue(pobedaLogo.isDisplayed());
     }
 
+    @Step ("Проверка, что при наведении курсора на секцию Информация отображены подразделы")
     public void checkInfoSections() {
         infoSection.hover();
         Assert.assertTrue(prepareToFlightSubsection.isDisplayed());
@@ -80,6 +81,7 @@ public class PobedaHomePageSelenide {
         Assert.assertTrue(aboutSubsection.isDisplayed());
     }
 
+    @Step ("Проверка отображения секций блока Поиск билета")
     public void checkTicketSearchSection() {
         Assert.assertTrue(startingPoint.isDisplayed());
         Assert.assertTrue(finishPoint.isDisplayed());
@@ -87,7 +89,8 @@ public class PobedaHomePageSelenide {
         Assert.assertTrue(dateBack.isDisplayed());
     }
 
-    public void tryFindingTicketsWithoutReqParams () {
+    @Step ("Попытка поиска без обязательного параметра (выделение красным обязательного поля)")
+    public void tryFindingTicketsWithoutReqParams() {
         startingPoint.setValue("Москва");
         startingPoint.press(Keys.ARROW_DOWN);
         startingPoint.press(Keys.ENTER);
@@ -98,12 +101,13 @@ public class PobedaHomePageSelenide {
         Assert.assertTrue(dateTo.getCssValue("color").equals("rgba(185, 0, 85, 1)"));
     }
 
-    public void bookingSearch () throws InterruptedException {
+    @Step ("Поиск несуществующего билета и проверка сообщения об отсутствии результатов поиска")
+    public void bookingSearch() {
         bookingManagementTab.click();
         Assert.assertTrue(clientLastname.isDisplayed());
         Assert.assertTrue(orderNumber.isDisplayed());
         orderNumber.setValue("XXXXXX");
-        clientLastname.setValue("Qwerty");
+        clientLastname.setValue("Ivanov");
         bookingSearchButton.click();
         switchTo().window(1);
         bookingSearchErrorMessage.shouldBe(Condition.visible, Duration.ofSeconds(10));
